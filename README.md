@@ -16,4 +16,4 @@ index.html 里面tukuapi里面的di是写的b站壁纸喵的id，然后相册就
 TailwindCss，AlpineJs，MobileboneJs，SnowfallJs(自行魔改了下)，View-imageJs，Html-importJs
 
 ### 图片素材
-漂浮图片素材来自街角魔族官网(http://www.tbs.co.jp/anime/machikado/)，其余来自互联网出处未知。
+漂浮图片素材来自街角魔族官网( http://www.tbs.co.jp/anime/machikado/ )，其余来自互联网出处未知。
