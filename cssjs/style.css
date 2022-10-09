@@ -23,11 +23,6 @@ a{
     -ms-user-select: none;
     user-select: none;
 }
-@supports (-webkit-touch-callout: inherit) {
-	#header {
-		background-attachment: scroll !important;
-	}
-}
 
 /*文字行数限制*/
 .line-1 {
@@ -380,4 +375,3 @@ img.error::before {
     height: 420px;
 }
 }
-
