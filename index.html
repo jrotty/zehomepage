@@ -144,7 +144,6 @@ if(video){video.remove();console.info('返回销毁播放器');}
 document.addEventListener('alpine:init', () => {
     Alpine.data('data', () => ({
     tukuapi: 'https://zezeshe.com/api/bili/bizhi.php?uid=6823116&page=',//相册接口
-    avatar:'https://gravatar.loli.net/avatar/',//邮箱头像源
     alltu:false,//图库全局列表
     version:'0.0.0',//版本号预设
     dark:getThemeFromLocalStorage(),//返回默认模式
@@ -170,7 +169,6 @@ fetch('./version.php').then(data => data.json()).then(data=>{
 var ver=data.ver;
 ver=parseFloat(ver.replace(/\./g, ''));
 this.version=data.ver;//ajax获取版本号
-this.avatar=data.avatar;//获取头像源
 
 //下方为简约的热更新
 if(localStorage.version&&localStorage.version!=ver){//对比版本号,不相等时则刷新数据
