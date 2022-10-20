@@ -1,18 +1,23 @@
 <div class="sticky z-10 top-0 px-2 py-2 md:py-2.5 flex items-center border-b-2 border-gray-100 dark:border-gray-800 bg-white dark:bg-gray-900 dark:text-white" data-role="header">
-    <a :href="$store.tu.back" class="p-2" data-rel="back" title="返回"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
-<path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+    	<a :href="$store.tu.back" class="p-2" data-rel="back" title="返回"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
 </svg>
 </a>
-    <h1 class="line-1 border-l border-gray-500 px-2" x-text="$store.tu.title"></h1>
+        <h1 class="line-1 border-l border-gray-500 px-2" x-text="$store.tu.title"></h1>
 </div>
 
 <div id="playerpage" class="pageback content scroll-smooth" x-data="{video:'',html:''}"
 @createiframe="fetch('https://zezeshe.com/api/bili/jx.php?&p=1&q=64&format=mp4&otype=json&bv='+$store.tu.bv).then(data => data.json()).then(data=>{
-
+if(data.code==0){
+video=data.url;
+video='https://zezeshe.com/api/player/plyr.php?url='+encodeURIComponent(video)+'&pic='+encodeURIComponent($store.tu.pic)+'&title='+encodeURIComponent($store.tu.title);
+html='&lt;iframe id=\'player\' src=\''+video+'\' class=\'w-full h-full\' scrolling=\'no\' border=\'0\' frameborder=\'no\' framespacing=\'0\' allowfullscreen=\'true\'&gt;&lt;/iframe&gt;';
+}else{
 html='&lt;iframe id=\'player\' src=\'https://zezeshe.com/api/bili/info.php?url=https://www.bilibili.com/video/'+$store.tu.bv+'\' class=\'w-full h-full\' scrolling=\'no\' border=\'0\' frameborder=\'no\' framespacing=\'0\' allowfullscreen=\'true\'&gt;&lt;/iframe&gt;';
+}
 
 })"
->
+    >
 <div class="relative"
 x-data="{
 bgcolor:['dfec24','58c1d7','ff6a64','00d6d6','1a1a1a'],
@@ -21,10 +26,10 @@ k:false}"
 x-init="k=bgcolor.length;k=Math.floor(Math.random()*k);">
 <div class="dotted-background" :style="'background-color: #'+bgcolor[k]+';z-index: -2;'">
 		<div class="dotted-background__dots" :style="'background-image:url(\'./img/bg.php?color='+dcolor[k]+'\');z-index: -2;'"></div>
+	</div>
 </div>
-</div>
-
-
+    
+    
 <div class="pb-8">  
 <div class="relative container max-w-screen-lg 2xl:max-w-screen-xl mx-auto px-4">
 
@@ -32,12 +37,12 @@ x-init="k=bgcolor.length;k=Math.floor(Math.random()*k);">
 <div class="rounded-md bg-gray-100 dark:bg-black media media-16x9 my-5" 
 x-init="$dispatch('createiframe')"
 x-html="html"
->
+    >
 <!--x-init="fetch('https://zezeshe.com/api/bili/info.php?mp4='+$store.tu.bv).then(data => data.json()).then(data=>{video=data.url;})"-->
 
 <!--<video id="movie" playsinline="" controls="" preload="metadata" :src="video" style="display: block; width: 100%;"></video>-->
 </div>
-<h1 class="text-base font-bold dark:text-white pl-0.5" x-text="$store.tu.title"></h1>
+ <h1 class="text-base font-bold dark:text-white pl-0.5" x-text="$store.tu.title"></h1>
 </div>
 </div>
 
@@ -51,8 +56,8 @@ x-init="fetch(apiurl+page).then(data => data.json()).then(data=>{allvideo=data.d
 <div class="flex items-center justify-between"> 
 <h3 class="mt-5 mb-3 border-b-4 text-xl font-bold border-blue-400 inline-block" x-text="info.title"></h3>
 <a class="text-blue-500" data-reload="playlist" 
-data-container="container" data-title="视频专栏"
-:href="'./playlist.html?type=playlist&mediaid='+$store.tu.mediaid+'&title='+info.title+'&ver='+version">观看更多</a>
+ data-container="container" data-title="视频专栏"
+ :href="'./playlist.html?type=playlist&mediaid='+$store.tu.mediaid+'&title='+info.title+'&ver='+ver">观看更多</a>
 </div>   
 
 <template x-if="allvideo">
@@ -66,7 +71,7 @@ document.querySelector('#playerpage').scrollTo(0, 0);
 replaceParamVal('bv',item.bvid);replaceParamVal('title',item.title);replaceParamVal('pic',item.cover);
 $dispatch('createiframe');
 " data-reload="videopage" class="zeload"
-data-container="container" :data-title="item.title" data-mask>
+ data-container="container" :data-title="item.title" data-mask>
 <div class="media media-16x9 rounded-lg shadow-lg">
 <img :src="item.cover+'@190w_143h_1e.webp'" class="w-full h-full object-cover media-content rounded-lg">
 </div>
@@ -87,8 +92,8 @@ x-init="fetch(apiurl+page).then(data => data.json()).then(data=>{allvideo=data.d
 <div class="flex items-center justify-between"> 
 <h3 class="mt-5 mb-3 border-b-4 text-xl font-bold border-blue-400 inline-block" x-text="info.title"></h3>
 <a class="text-blue-500" data-reload="playlist" 
-data-container="container" data-title="视频专栏"
-:href="'./playlist.html?type=playlist&seasonid='+$store.tu.seasonid+'&title='+info.title+'&ver='+version">观看更多</a>
+ data-container="container" data-title="视频专栏"
+ :href="'./playlist.html?type=playlist&seasonid='+$store.tu.seasonid+'&title='+info.title+'&ver='+ver">观看更多</a>
 </div>   
 
 <template x-if="allvideo">
@@ -102,7 +107,7 @@ document.querySelector('#playerpage').scrollTo(0, 0);
 replaceParamVal('bv',item.bvid);replaceParamVal('title',item.title);replaceParamVal('pic',item.cover);
 $dispatch('createiframe');
 " data-reload="videopage" class="zeload"
-data-container="container" :data-title="item.title" data-mask>
+ data-container="container" :data-title="item.title" data-mask>
 <div class="media media-16x9 rounded-lg shadow-lg">
 <img :src="item.cover+'@190w_143h_1e.webp'" class="w-full h-full object-cover media-content rounded-lg">
 </div>

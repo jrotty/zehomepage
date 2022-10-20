@@ -26,7 +26,7 @@ x-init="fetch(apiurl+page).then(data => data.json()).then(data=>{allvideo=data.d
 <div class="grid grid-cols-2 md:grid-cols-5 2xl:grid-cols-6 gap-4 sm:gap-8">
 <template x-for="(item,i) in allvideo">
 <template x-if="i<12">
-<a :href="'./player.html?type=player&mediaid='+v+'&title='+item.title+'&bv='+item.bvid+'&pic='+item.cover+'&ver='+version" data-reload="videopage" class="zeload"
+<a :href="'./player.html?type=player&mediaid='+v+'&title='+item.title+'&bv='+item.bvid+'&pic='+item.cover+'&ver='+ver" data-reload="videopage" class="zeload"
  data-container="container" :data-title="item.title" data-mask :class="{'hidden 2xl:block':i>=10}">
 <div class="media media-16x9 rounded-lg shadow-lg">
 <img :src="item.cover+'@190w_143h_1e.webp'" class="w-full h-full object-cover media-content rounded-lg">
@@ -39,7 +39,7 @@ x-init="fetch(apiurl+page).then(data => data.json()).then(data=>{allvideo=data.d
 <div class="text-center text-sm text-white mt-10">
 <a class="my-2 px-6 py-2 rounded bg-blue-400" data-reload="playlist" 
  data-container="container" data-title="视频专栏"
- :href="'./playlist.html?type=playlist&mediaid='+v+'&title='+info.title+'&ver='+version">观看所有相关视频</a>
+ :href="'./playlist.html?type=playlist&mediaid='+v+'&title='+info.title+'&ver='+ver">观看所有相关视频</a>
 </div>
 </div>
 
@@ -59,7 +59,7 @@ x-init="fetch(apiurl+page).then(data => data.json()).then(data=>{allvideo=data.d
 <div class="grid grid-cols-2 md:grid-cols-5 2xl:grid-cols-6 gap-4 sm:gap-8">
 <template x-for="(item,i) in allvideo">
 <template x-if="i<12">
-<a :href="'./player.html?type=player&seasonid='+v+'&title='+item.title+'&bv='+item.bvid+'&pic='+item.cover+'&ver='+version" data-reload="videopage" class="zeload"
+<a :href="'./player.html?type=player&seasonid='+v+'&title='+item.title+'&bv='+item.bvid+'&pic='+item.cover+'&ver='+ver" data-reload="videopage" class="zeload"
  data-container="container" :data-title="item.title" data-mask :class="{'hidden 2xl:block':i>=10}">
 <div class="media media-16x9 rounded-lg shadow-lg">
 <img :src="item.cover+'@190w_143h_1e.webp'" class="w-full h-full object-cover media-content rounded-lg">
@@ -72,7 +72,7 @@ x-init="fetch(apiurl+page).then(data => data.json()).then(data=>{allvideo=data.d
 <div class="text-center text-sm text-white mt-10">
 <a class="my-2 px-6 py-2 rounded bg-blue-400" data-reload="playlist" 
  data-container="container" data-title="视频专栏"
- :href="'./playlist.html?type=playlist&seasonid='+v+'&title='+info.title+'&ver='+version">观看所有相关视频</a>
+ :href="'./playlist.html?type=playlist&seasonid='+v+'&title='+info.title+'&ver='+ver">观看所有相关视频</a>
 </div>
 </div>
 

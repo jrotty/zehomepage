@@ -18,7 +18,7 @@ x-init="fetch(apiurl+page).then(data => data.json()).then(data=>{allvideo=data.d
 <div>
 <div class="grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-8">
 <template x-for="(item,i) in allvideo">
-<a :href="'./player.html?type=player&mediaid='+$store.tu.mediaid+'&title='+item.title+'&bv='+item.bvid+'&pic='+item.cover+'&back=playlist&ver='+version" data-reload="videopage" class="zeload"
+<a :href="'./player.html?type=player&mediaid='+$store.tu.mediaid+'&title='+item.title+'&bv='+item.bvid+'&pic='+item.cover+'&back=playlist&ver='+ver" data-reload="videopage" class="zeload"
  data-container="container" :data-title="item.title" data-mask>
 <div class="media media-16x9 rounded-lg shadow-lg">
 <img :src="item.cover+'@190w_143h_1e.webp'" class="w-full h-full object-cover media-content rounded-lg">
@@ -57,7 +57,7 @@ x-init="fetch(apiurl+page).then(data => data.json()).then(data=>{allvideo=data.d
 <div class="grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-8">
 <template x-for="(item,i) in allvideo">
 <template x-if="20*(page-1)<=i&&i<20*page">  
-<a :href="'./player.html?type=player&seasonid='+$store.tu.seasonid+'&title='+item.title+'&bv='+item.bvid+'&pic='+item.cover+'&back=playlist&ver='+version" data-reload="videopage" class="zeload"
+<a :href="'./player.html?type=player&seasonid='+$store.tu.seasonid+'&title='+item.title+'&bv='+item.bvid+'&pic='+item.cover+'&back=playlist&ver='+ver" data-reload="videopage" class="zeload"
  data-container="container" :data-title="item.title" data-mask>
 <div class="media media-16x9 rounded-lg shadow-lg">
 <img :src="item.cover+'@190w_143h_1e.webp'" class="w-full h-full object-cover media-content rounded-lg">

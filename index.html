@@ -67,23 +67,23 @@ tailwind.config = {
 
 <div id="container" class="relative ml-12 md:ml-16 h-full">
 <div id="home" class="page out content" data-title="主页">
-<link rel="import" :href="'./home.html?ver='+version" is="ui-import">
+<link rel="import" :href="'./home.html?ver='+ver" is="ui-import">
 </div>    
     
 <div id="tuku" class="page out content" data-title="图库">
-<link rel="import" :href="'./tuku.html?ver='+version" is="ui-import">
+<link rel="import" :href="'./tuku.html?ver='+ver" is="ui-import">
 </div>
 
 <div id="video" class="page out" data-title="视频">
-<link rel="import" :href="'./video.html?ver='+version" is="ui-import">
+<link rel="import" :href="'./video.html?ver='+ver" is="ui-import">
 </div>       
     
 <div id="item" class="page out" data-title="项目">
-<link rel="import" :href="'./item.html?ver='+version" is="ui-import">
+<link rel="import" :href="'./item.html?ver='+ver" is="ui-import">
 </div>        
     
 <div id="setting" class="page out" data-title="设置">
-<link rel="import" :href="'./setting.html?ver='+version" is="ui-import">
+<link rel="import" :href="'./setting.html?ver='+ver" is="ui-import">
 </div>  
 </div>
 
@@ -145,7 +145,9 @@ document.addEventListener('alpine:init', () => {
     Alpine.data('data', () => ({
     tukuapi: 'https://zezeshe.com/api/bili/bizhi.php?uid=6823116&page=',//相册接口
     alltu:false,//图库全局列表
+    ver:'20221001',//内部版本号
     version:'0.0.0',//版本号预设
+    cache:'0',//刷新缓存递增变量
     dark:getThemeFromLocalStorage(),//返回默认模式
     darkMode(type='auto') { //手动切换
     if(type=='light'||type=='dark'){//记录手动设置参数，并修改全局变量
@@ -166,9 +168,13 @@ document.addEventListener('alpine:init', () => {
     
     init() {
 fetch('./version.php').then(data => data.json()).then(data=>{
-var ver=data.ver;
+if(localStorage.cachenum){
+this.cache=localStorage.cachenum;  
+}
+var ver=data.ver+this.cache;
 ver=parseFloat(ver.replace(/\./g, ''));
-this.version=data.ver;//ajax获取版本号
+this.ver=data.ver+this.cache;//ajax获取版本号
+this.version=data.version;//ajax获取版本号
 
 //下方为简约的热更新
 if(localStorage.version&&localStorage.version!=ver){//对比版本号,不相等时则刷新数据

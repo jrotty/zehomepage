@@ -23,7 +23,7 @@ x-init="fetch(apiurl+page).then(data => data.json()).then(data=>{alltu=data.data
 <div class="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-8">
 <template x-for="(item,i,info) in alltu" x-init="$nextTick(() => {Limg();});">
 <a 
-:href="'./tupage.html?type=tupage&id='+i+'&ver='+version" data-reload="tupage" 
+:href="'./tupage.html?type=tupage&id='+i+'&ver='+ver" data-reload="tupage" 
 x-effect="Limg();"
 class="media media-16x9 rounded-lg shadow-lg" data-container="container" data-title="查看图片" data-mask>
 
