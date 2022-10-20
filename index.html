@@ -172,8 +172,7 @@ if(localStorage.cachenum){
 this.cache=localStorage.cachenum;  
 }
 var ver=data.ver+this.cache;
-ver=parseFloat(ver.replace(/\./g, ''));
-this.ver=data.ver+this.cache;//ajax获取版本号
+this.ver=ver;//ajax获取版本号
 this.version=data.version;//ajax获取版本号
 
 //下方为简约的热更新
@@ -181,6 +180,7 @@ if(localStorage.version&&localStorage.version!=ver){//对比版本号,不相等�
 [].slice.call(document.querySelectorAll('.page')).forEach(function (page) {
     Mobilebone.remove(page);
 });//清理缓存
+localStorage.version=ver;//将版本号记录只长久存储里
 location.reload();//刷新页面
 }
 localStorage.version=ver;//将版本号记录只长久存储里
