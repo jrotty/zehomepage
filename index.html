@@ -170,6 +170,8 @@ document.addEventListener('alpine:init', () => {
 fetch('./version.php').then(data => data.json()).then(data=>{
 if(localStorage.cachenum){
 this.cache=localStorage.cachenum;  
+}else{
+localStorage.cachenum=this.cache; 
 }
 var ver=data.ver+this.cache;
 this.ver=ver;//ajax获取版本号
@@ -183,6 +185,7 @@ if(localStorage.version&&localStorage.version!=ver){//对比版本号,不相等�
 localStorage.version=ver;//将版本号记录只长久存储里
 location.reload();//刷新页面
 }
+
 localStorage.version=ver;//将版本号记录只长久存储里
 
 
